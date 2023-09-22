@@ -21,17 +21,9 @@ public class CartService {
     // (기능3) 장바구니 조회
     public CartResponse.FindAllByUserDTO findAllByUser(User sessionUser) {
 
-        int totalPrice = 0;
-
         List<Cart> cartList = cartJPARepository.findAllByUserId(sessionUser.getId());
-
-        for (Cart cart : cartList) {
-            totalPrice += cart.getPrice();
-        }
-
-        CartResponse.FindAllByUserDTO dtos = new CartResponse.FindAllByUserDTO(totalPrice, cartList);
-
-        return dtos;
+  
+        return new CartResponse.FindAllByUserDTO(cartList);
     }
 
     @Transactional
