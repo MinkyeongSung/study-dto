@@ -11,6 +11,7 @@ import lombok.ToString;
 
 public class CartResponse {
 
+    // 제일 깔끔한 버전
     // (기능3) 장바구니 조회
     // 내가 지금 디비에서 조회한 Entity가 머지?
     @ToString
