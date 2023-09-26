@@ -13,10 +13,23 @@ import lombok.ToString;
 public class ProductResponse {
 
     // (기능1) 상품 목록보기
+    // (기능1) 상품 목록보기
     @ToString
     @Getter
     @Setter
     public static class FindAllDTO {
+        private Integer productId;
+        private String productName;
+        private String image;
+        private Integer price;
+
+        public FindAllDTO(Product product) {
+            this.productId = product.getId();
+            this.productName = product.getProductName();
+            this.image = product.getImage();
+            this.price = product.getPrice();
+
+        }
 
     }
 
