@@ -22,7 +22,7 @@ public class ProductService {
 
     private final ProductJPARepository productJPARepository;
     private final OptionJPARepository optionJPARepository;
-
+                                                                                                                                                                                            
     // (기능1) 상품 목록보기
     public List<ProductResponse.FindAllDTO> findAll(int page) {
         Pageable pageable = PageRequest.of(page, 9);
@@ -34,7 +34,7 @@ public class ProductService {
         return responseDTO;
     }
 
-    // (기능2) 상품 상세보기
+    // (기능2) 상품 상세보기 
     public ProductResponse.FindByIdDTO findById(int id) {
         return null;
     }
