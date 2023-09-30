@@ -33,8 +33,8 @@ public class ProductService {
 
         return responseDTO;
     }
-
-    // (기능2) 상품 상세보기  
+ 
+    // (기능2) 상품 상세보기   
     public ProductResponse.FindByIdDTO findById(int id) {
         return null;
     }
