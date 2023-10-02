@@ -1,72 +1,40 @@
 package com.example.kakao.product;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.kakao._core.utils.ApiUtils;
 import com.example.kakao.product.option.Option;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.RequiredArgsConstructor;
 
-public class ProductResponse {
+@RequiredArgsConstructor
+@RestController
+public class ProductRestController {
+
+    private final ProductService productService; // 자바에서 final 변수는 반드시 초기화되어야 함.
+    private final HttpSession session;
 
     // (기능1) 상품 목록보기
-    @ToString
-    @Getter
-    @Setter
-    public static class FindAllDTO {
-        private Integer productId;
-        private String productName;
-        private String image;
-        private Integer price;
-
-        public FindAllDTO(Product product) {
-            this.productId = product.getId();
-            this.productName = product.getProductName();
-            this.image = product.getImage();
-            this.price = product.getPrice();
-
-        }
-
+    @GetMapping("/products")
+    public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") Integer page) {
+        List<ProductResponse.FindAllDTO> responseDTO = productService.findAll(page);
+        return ResponseEntity.ok().body(responseDTO);
     }
 
+
     // (기능2) 상품 상세보기
-
-    @Getter
-    @Setter
-    public static class FindByIdDTO {
-        private Integer productId;
-        private String productName;
-        private String productImage;
-        private Integer productPrice;
-        private Integer productStarCount;
-        private List<OptionDTO> options;
-
-        public FindByIdDTO(Product product) {
-            this.productId = product.getId();
-            this.productName = product.getProductName();
-            this.productImage = product.getImage();
-            this.productPrice = product.getPrice();
-            this.productStarCount = 4;
-            this.options = product.getOptions().stream()
-                    .map(o -> new OptionDTO(o))
-                    .collect(Collectors.toList());
-        }
-
-        @Getter
-        @Setter
-        public class OptionDTO {
-            private Integer optionId;
-            private String optionName;
-            private Integer optionPrice;
-
-            public OptionDTO(Option option) {
-                this.optionId = option.getId();
-                this.optionName = option.getOptionName();
-                this.optionPrice = option.getPrice();
-            }
-        }
+    @GetMapping("/products/{id}")
+    public ResponseEntity<?> findById(@PathVariable int id) {
+        
+        return null;
     }
 
 }
