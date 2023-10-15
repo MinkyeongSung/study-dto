@@ -16,7 +16,7 @@ import com.example.kakao.product.option.Option;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RestController
+@RestController  
 public class ProductRestController {
 
     private final ProductService productService; // 자바에서 final 변수는 반드시 초기화되어야 함.
